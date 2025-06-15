@@ -1,11 +1,11 @@
-// Import built-in modules
-const fs = require("fs"); // File system operations
-const path = require("path"); // Utilities for handling file paths
+// Import built-in modules.
+const fs = require("fs"); // File system operations.
+const path = require("path"); // Utilities for handling file paths.
 
-// Define the path to the "files" directory
+// Define the path to the "files" directory.
 const basePath = path.join(__dirname, "files");
 
-// Ensure the "files" directory exists, create it if not
+// Ensure the "files" directory exists, create it if not.
 if (!fs.existsSync(basePath)) {
   fs.mkdirSync(basePath);
 }
@@ -45,5 +45,5 @@ const deleteFile = (filename) => {
   return `File "${filename}" deleted successfully.`;
 };
 
-// Export the file operations for use in other modules
+// Export the file operations for use in other modules.
 module.exports = { createFile, readFile, deleteFile };
