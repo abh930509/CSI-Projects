@@ -1,43 +1,45 @@
-// Import core modules
+// Import built-in modules.
 const http = require("http");
 const url = require("url");
-const fileManager = require("./fileManager");
+const fileHandler = require("./fileManager"); // Module for handling file operations.
 
-// Create HTTP server
-const app = http.createServer((req, res) => {
-  const parsedUrl = url.parse(req.url, true); // Parse URL and query string
-  const { pathname, query } = parsedUrl;
+// Create the HTTP server.
+const app = http.createServer((request, response) => {
+  // Parse the request URL and query parameters.
+  const parsedRequest = url.parse(request.url, true);
+  const { pathname, query } = parsedRequest;
 
-  res.setHeader("Content-Type", "text/plain");
+  // Set the response content type to plain text.
+  response.setHeader("Content-Type", "text/plain");
 
-  // Handle file creation
+  // Route: Create a new file with provided filename and content.
   if (pathname === "/create" && query.filename && query.content) {
-    const msg = fileManager.createFile(query.filename, query.content);
-    res.end(msg);
+    const message = fileHandler.createFile(query.filename, query.content);
+    response.end(message);
   }
 
-  // Handle file reading
+  // Route: Read the content of a specified file.
   else if (pathname === "/read" && query.filename) {
-    const msg = fileManager.readFile(query.filename);
-    res.end(msg);
+    const message = fileHandler.readFile(query.filename);
+    response.end(message);
   }
 
-  // Handle file deletion
+  // Route: Delete a specified file.
   else if (pathname === "/delete" && query.filename) {
-    const msg = fileManager.deleteFile(query.filename);
-    res.end(msg);
+    const message = fileHandler.deleteFile(query.filename);
+    response.end(message);
   }
 
-  // Handle invalid routes or missing parameters
+  // Fallback: Invalid route or missing parameters.
   else {
-    res.end(
-      "Invalid route or missing parameters.\nUse /create, /read, or /delete"
+    response.end(
+      "Invalid route or missing parameters.\nAvailable routes: /create, /read, /delete"
     );
   }
 });
 
-// Start the server on port 4000
+// Start the server on port 8080.
 const PORT = 8080;
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/`);
+  console.log(`Server is running at http://localhost:${PORT}/`);
 });
