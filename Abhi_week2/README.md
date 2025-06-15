@@ -1,61 +1,71 @@
-# Celebal Internship - Node.js Week 2 Project: File System Utility
+# 📁 Node.js File Manager Tool – Celebal Internship Week 2
 
-## 📦 Project Overview
-
-This is a **File System Utility Tool** developed using only **Node.js core modules**. It offers a lightweight solution for performing basic file operations through a browser or any HTTP client.
-
-🔧 No frameworks or third-party libraries were used – just pure Node.js!
+Welcome!.This is a basic **File Manager Tool** built with **pure Node.js** — no external libraries used. It's a mini backend project that helps you understand how Node.js works under the hood by performing simple file operations through HTTP routes..
 
 ---
 
-## ✨ What This Tool Can Do
+## 🔍 What This Project Does
 
-- 📂 Create a new file with custom content
-- 📖 Read and view the content of existing files
-- 🧹 Delete unwanted files
+This tool lets you:
 
-All managed files are saved inside a `files/` folder that is automatically generated when the server starts.
+- ➕ **Create** a new file with custom content
+- 📄 **Read** the contents of a file
+- 🗑️ **Delete** an existing file
+
+All your files are safely handled and stored inside a folder named `files`, which gets created automatically when the server runs.
 
 ---
 
-## 🧱 Built With
+## 🧱 Technologies Used
 
-- **`http`** – For creating the server and handling requests
-- **`fs`** – For creating, reading, and deleting files
-- **`path`** – To safely generate file paths
-- **`url`** – To parse incoming request URLs and extract parameters
+We’re using only Node.js core modules:
+
+- `http` – to build the web server
+- `fs` – to handle file system operations like create, read, delete
+- `path` – to manage file paths securely
+- `url` – to extract information from the request URL (like file name & content)
 
 ---
 
 ## 🚀 Getting Started
 
-### 🔧 Requirements
+### ✅ What You Need
 
-- Install [Node.js](https://nodejs.org/) (v14 or higher is recommended)
+- Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
 
-### 📁 Setup Instructions
+---
 
-1. Download or clone this repository.
-2. Navigate to the project directory in your terminal.
-3. Run the server using the following command:
+### ▶️ Steps to Run This Project
 
-```bash
-npm start
+1. **Download or clone** this repository to your system.
+2. Open your terminal or command prompt and go to the project folder.
+3. Start the server by running:
 
+- bash
+- npm start
 
-## 🌐 Test the Application
+("If you're using nodemon, run npm run dev instead.")
 
-After starting the server, open these links in your browser:
+## 🌐 How to Use It
 
-### ➕ Create a file
+Once the server is running on http://localhost:4000, you can use your browser or Postman to interact with it.
 
-[http://localhost:4000/create?filename=test.txt&content=HelloWorld](http://localhost:4000/create?filename=test.txt&content=HelloWorld)
+### ➕ Create a File
 
-### 📄 Read the file
+Create a new file and add content:
+http://localhost:4000/create?filename=myfile.txt&content=HelloWorld
 
-[http://localhost:4000/read?filename=test.txt](http://localhost:4000/read?filename=test.txt)
+### 📄 Read a File
 
-### 🗑️ Delete the file
+View the content of an existing file:
+http://localhost:4000/read?filename=myfile.txt
 
-[http://localhost:4000/delete?filename=test.txt](http://localhost:4000/delete?filename=test.txt)
-```
+### 🗑️ Delete a File
+
+Delete a file from the system:
+http://localhost:4000/delete?filename=myfile.txt
+
+## 👨‍💻 Author
+
+- Abhishek Giri
+- Backend Intern – Celebal Technologies
