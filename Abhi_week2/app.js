@@ -1,43 +1,45 @@
-// Import built-in modules
-const http = require("http");
-const url = require("url");
-const fileManager = require("./fileManager"); // Import custom file operations module
+// Bring in some built-in Node.js tools we'll need.
+const http = require("http"); // Lets us create a web server.
+const url = require("url"); // Helps us read info from the URL.
+const fileHandler = require("./fileManager"); // This is our own helper file that handles file stuff.
 
-// Create an HTTP server to handle file operations via URL routes
-const server = http.createServer((req, res) => {
-  const parsedUrl = url.parse(req.url, true); // Break down the URL and its query parameters
-  const { pathname, query } = parsedUrl;
+// Let's create our web server using Node's http module.
+const app = http.createServer((request, response) => {
+  // Break the URL into parts so we can understand what the user wants.
+  const parsedRequest = url.parse(request.url, true);
+  const { pathname, query } = parsedRequest; // Get the route (like /create) and any info passed (like filename).
 
-  res.setHeader("Content-Type", "text/plain"); // Set response content type
+  // We're just sending plain text back in our responses.
+  response.setHeader("Content-Type", "text/plain");
 
-  // Route: /create - Create a file with given name and content
+  // 📝 If the user wants to create a file, and they've given us a name and some content.
   if (pathname === "/create" && query.filename && query.content) {
-    const msg = fileManager.createFile(query.filename, query.content);
-    res.end(msg);
+    const message = fileHandler.createFile(query.filename, query.content);
+    response.end(message); // Send back a message like "File created!"
   }
 
-  // Route: /read - Read the content of a specific file
+  // 📖 If they want to read a file and they've told us which one.
   else if (pathname === "/read" && query.filename) {
-    const msg = fileManager.readFile(query.filename);
-    res.end(msg);
+    const message = fileHandler.readFile(query.filename);
+    response.end(message); // Show them the contents of the file.
   }
 
-  // Route: /delete - Delete a specified file
+  // ❌ If they want to delete a file and told us which one
   else if (pathname === "/delete" && query.filename) {
-    const msg = fileManager.deleteFile(query.filename);
-    res.end(msg);
+    const message = fileHandler.deleteFile(query.filename);
+    response.end(message); // Confirm it's deleted.
   }
 
-  // If the route or required parameters are incorrect
+  // 🚫 If they’ve gone to the wrong route or forgot something, let them know.
   else {
-    res.end(
-      "Invalid route or missing parameters.\nTry using /create, /read, or /delete"
+    response.end(
+      "Oops! Something's off. Make sure you're using the right route and sending the right info.\nTry /create, /read, or /delete with ?filename=yourfile.txt"
     );
   }
 });
 
-// Start the server on port 4000 and log the URL
-const PORT = 4000;
-server.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/`);
+// Time to turn on the server! Let’s choose a port number (like a channel to listen on).
+const PORT = 8080;
+app.listen(PORT, () => {
+  console.log(`🚀 Server is live at: http://localhost:${PORT}/`);
 });
