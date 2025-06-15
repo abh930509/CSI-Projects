@@ -58,12 +58,12 @@ http://localhost:8080/create?filename=myNewFile.txt&content=WELCOME_TO_MY_FILE
 ### 📄 Read a File
 
 View the content of an existing file:
-http://localhost:8080/read?filename=myfile.txt
+http://localhost:8080/read?filename=myNewFile.txt
 
 ### 🗑️ Delete a File
 
 Delete a file from the system:
-http://localhost:8080/delete?filename=myfile.txt
+http://localhost:8080/delete?filename=myNewFile.txt
 
 ## 👨‍💻 Author
 
