@@ -1,0 +1,23 @@
+{
+    "name": "file-manager-tool",
+    "version": "1.0.0",
+    "description": "A Node.js-based File System Management Tool created during Week 2 of the Celebal Internship program.",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "author": "Abhishek Giri",
+    "license": "ISC",
+    "keywords": [
+      "nodejs",
+      "file-management",
+      "file-system",
+      "cli-tool",
+      "celebal-internship",
+      "week2",
+      "node",
+      "backend",
+      "filesystem-utility"
+    ]
+  }
+  
