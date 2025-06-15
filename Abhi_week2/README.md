@@ -53,7 +53,7 @@ Once the server is running on http://localhost:8080, you can use your browser or
 ### ➕ Create a File
 
 Create a new file and add content:
-http://localhost:8080/create?filename=myfile.txt&content=HelloWorld
+http://localhost:8080/create?filename=myNewFile.txt&content=WELCOME_TO_MY_FILE
 
 ### 📄 Read a File
 
