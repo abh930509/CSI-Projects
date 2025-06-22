@@ -1,0 +1,22 @@
+{
+    "name": "courses-enrolled-async-refactor",
+    "version": "1.0.0",
+    "description": "Refactor of callback-based code to Promises and Async/Await for courses enrolled scenario.",
+    "main": "callback-based.js",
+    "scripts": {
+      "start:callback": "node callback-based.js",
+      "start:promise": "node promises-refactor.js",
+      "start:async": "node async-await-final.js"
+    },
+    "keywords": [
+      "nodejs",
+      "async",
+      "await",
+      "promises",
+      "callbacks",
+      "courses",
+      "refactor"
+    ],
+    "author": "Abhishek Giri",
+    "license": "ISC"
+  }
