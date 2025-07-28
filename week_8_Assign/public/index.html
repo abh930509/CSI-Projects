@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Express.js Enhanced App</title>
+</head>
+<body>
+  <h1>🚀 Express.js Enhanced App</h1>
+
+  <h2>📤 Upload File</h2>
+  <form id="uploadForm" enctype="multipart/form-data">
+    <input type="file" name="file" />
+    <button type="submit">Upload</button>
+  </form>
+  <p id="uploadResult"></p>
+
+  <h2>🌦 Get Weather</h2>
+  <input type="text" id="city" placeholder="Enter city" />
+  <button onclick="getWeather()">Get Weather</button>
+  <pre id="weatherResult"></pre>
+
+  <script>
+    document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await res.json();
+      document.getElementById('uploadResult').innerText = JSON.stringify(data, null, 2);
+    });
+
+    async function getWeather() {
+      const city = document.getElementById('city').value;
+      const res = await fetch(`/api/weather/${city}`);
+      const data = await res.json();
+      document.getElementById('weatherResult').innerText = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
